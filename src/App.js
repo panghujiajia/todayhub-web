@@ -2,6 +2,8 @@ import './App.css';
 import Column from './components/Column';
 import { Component } from 'react';
 import { $getHotData, $getHotDataById } from './services/index.service';
+import { message } from 'antd';
+
 export default class App extends Component {
     state = { hot: [] };
     getHotData = async () => {
@@ -15,9 +17,13 @@ export default class App extends Component {
     onRefresh = async id => {
         const data = await $getHotDataById(id);
         if (data) {
+            const { list, time } = data;
+            message.success('更新成功');
             const { hot } = this.state;
             hot.map(item => {
-                return item.id === id ? { ...item, data } : item;
+                return item.id === id
+                    ? { ...item, data: list, create_time: time }
+                    : item;
             });
             this.setState({
                 hot,

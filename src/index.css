@@ -1,3 +1,7 @@
+@import '~antd/dist/antd.css';
+.ant-message .anticon{
+    top: -2px;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

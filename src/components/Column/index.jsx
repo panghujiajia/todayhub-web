@@ -1,16 +1,23 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import zh from 'dayjs/locale/zh';
+dayjs.extend(relativeTime);
+dayjs.locale('zh');
 const refresh = (id, onAppRefresh) => {
     onAppRefresh(id);
 };
+const formatDate = time => {
+    return dayjs(time).fromNow();
+};
 function Column(props) {
-    console.log(props);
-    const { name, data, id, onAppRefresh } = props;
+    const { name, data, id, onAppRefresh, create_time } = props;
     const hotItem = data.map((item, index) => {
         return (
-            <div className="hot-item flex justify-between my-2" key={index}>
+            <div className="flex justify-between my-2" key={index}>
                 <div className="inline-flex flex-1">
                     <span
                         className={[
-                            'hot-number text-base text-right w-4 mr-2 text-gray-400 ',
+                            'text-base text-right w-4 mr-2 text-gray-400 ',
                             index === 0 ? 'text-red-700 font-normal' : '',
                             index === 1 ? 'text-pink-600 font-normal' : '',
                             index === 2 ? 'text-yellow-400 font-normal' : '',
@@ -19,22 +26,25 @@ function Column(props) {
                         {index + 1}
                     </span>
                     <a href={item.link} className="flex-1" target="_blank">
-                        <p className="hot-title text-gray-900 hover:underline hover:text-blue-600 hover:font-medium">
+                        <p className="text-gray-900 text-base hover:underline mb-0 hover:text-blue-600 hover:font-medium">
                             {item.title}
                         </p>
                     </a>
                 </div>
-                <span className="hot-heat text-sm leading-6 ml-2 text-gray-400 text-right">
+                <span className="text-sm leading-6 ml-2 text-gray-400 text-right">
                     {item.extra}
                 </span>
             </div>
         );
     });
     return (
-        <div className="hot-column-container rounded w-full mb-4 md:w-1/2 xl:w-1/3 2xl:w-1/4">
+        <div className="rounded w-full mb-4 md:w-1/2 xl:w-1/3 2xl:w-1/4">
             <div className="mx-0 sm:mx-2 pb-4 bg-white">
-                <div className="hot-classify font-bold p-4 shadow-sm w-full flex justify-between">
-                    <span>{name}</span>
+                <div className=" p-4 shadow-sm w-full flex justify-between">
+                    <div className="flex items-center">
+                        <h2 className="font-bold mr-2 text-lg">{name}</h2>
+                        <span>{formatDate(create_time)}</span>
+                    </div>
                     <span
                         className="cursor-pointer"
                         onClick={() => refresh(id, onAppRefresh)}
@@ -57,7 +67,7 @@ function Column(props) {
                         </svg>
                     </span>
                 </div>
-                <div className="hot-content-wrap h-96 sm:h80 overflow-scroll pt-2 px-2 sm:px-4">
+                <div className="h-96 sm:h80 overflow-scroll pt-2 px-2 sm:px-4">
                     {hotItem}
                 </div>
             </div>
