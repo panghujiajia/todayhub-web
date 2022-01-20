@@ -2,7 +2,7 @@ import './App.css';
 import Column from './components/Column';
 import { Component } from 'react';
 import { $getHotData, $getHotDataById } from './services/index.service';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 
 export default class App extends Component {
     state = { hot: [] };
