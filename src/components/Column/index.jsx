@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import zh from 'dayjs/locale/zh';
 dayjs.extend(relativeTime);
-dayjs.locale('zh');
+dayjs.locale(zh);
 const refresh = (id, onAppRefresh) => {
     onAppRefresh(id);
 };
@@ -25,7 +25,12 @@ function Column(props) {
                     >
                         {index + 1}
                     </span>
-                    <a href={item.link} className="flex-1" target="_blank">
+                    <a
+                        href={item.link}
+                        className="flex-1"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
                         <p className="text-gray-900 text-base hover:underline mb-0 hover:text-blue-600 hover:font-medium">
                             {item.title}
                         </p>
