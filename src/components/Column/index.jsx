@@ -17,7 +17,7 @@ function Column(props) {
                 <div className="inline-flex flex-1">
                     <span
                         className={[
-                            'text-base text-right w-4 mr-2 text-gray-400 ',
+                            'text-base sm:text-xl text-right w-6 mr-2 text-gray-400 ',
                             index === 0 ? 'text-red-700 font-normal' : '',
                             index === 1 ? 'text-pink-600 font-normal' : '',
                             index === 2 ? 'text-yellow-400 font-normal' : '',
@@ -27,16 +27,14 @@ function Column(props) {
                     </span>
                     <a
                         href={item.link}
-                        className="flex-1"
+                        className="flex-1 text-gray-900 text-base sm:text-xl mb-0 hover:underline hover:text-blue-600 hover:font-medium visited:text-gray-400"
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <p className="text-gray-900 text-base hover:underline mb-0 hover:text-blue-600 hover:font-medium">
-                            {item.title}
-                        </p>
+                        <p>{item.title}</p>
                     </a>
                 </div>
-                <span className="text-sm leading-6 ml-2 text-gray-400 text-right">
+                <span className="text-sm sm:text-base leading-6 ml-2 text-gray-400 text-right">
                     {item.extra}
                 </span>
             </div>
@@ -47,7 +45,7 @@ function Column(props) {
             <div className="mx-0 sm:mx-2 pb-4 bg-white">
                 <div className=" p-4 shadow-sm w-full flex justify-between">
                     <div className="flex items-center">
-                        <h2 className="font-bold mr-2 text-lg">{name}</h2>
+                        <h2 className="font-bold mr-2 text-xl">{name}</h2>
                         <span>{formatDate(create_time)}</span>
                     </div>
                     <span
@@ -72,7 +70,7 @@ function Column(props) {
                         </svg>
                     </span>
                 </div>
-                <div className="h-96 sm:h80 overflow-scroll pt-2 px-2 sm:px-4">
+                <div className="h-96 sm:h80 overflow-y-auto pt-2 px-2 sm:px-4">
                     {hotItem}
                 </div>
             </div>
