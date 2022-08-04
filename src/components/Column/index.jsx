@@ -13,11 +13,11 @@ function Column(props) {
     const { name, data, id, onAppRefresh, create_time } = props;
     const hotItem = data.map((item, index) => {
         return (
-            <div className="flex justify-between my-2" key={index}>
+            <div className="flex justify-between my-2 pr-2 sm:pr-0" key={index}>
                 <div className="inline-flex flex-1">
                     <span
                         className={[
-                            'text-base sm:text-xl text-right w-6 mr-2 text-gray-400 ',
+                            'text-base sm:text-sm text-right w-6 mr-2 text-gray-400 ',
                             index === 0 ? 'text-red-700 font-normal' : '',
                             index === 1 ? 'text-pink-600 font-normal' : '',
                             index === 2 ? 'text-yellow-400 font-normal' : '',
@@ -27,14 +27,14 @@ function Column(props) {
                     </span>
                     <a
                         href={item.link}
-                        className="flex-1 text-gray-900 text-base sm:text-xl mb-0 hover:underline hover:text-blue-600 hover:font-medium visited:text-gray-400"
+                        className="flex-1 text-gray-900 text-base sm:text-sm mb-0 hover:underline hover:text-blue-600 hover:font-medium visited:text-gray-400"
                         target="_blank"
                         rel="noreferrer"
                     >
                         <p>{item.title}</p>
                     </a>
                 </div>
-                <span className="text-sm sm:text-base leading-6 ml-2 text-gray-400 text-right">
+                <span className="text-sm sm:text-sm leading-6 ml-2 text-gray-400 text-right">
                     {item.extra}
                 </span>
             </div>
@@ -43,13 +43,15 @@ function Column(props) {
     return (
         <div className="rounded w-full mb-4 md:w-1/2 xl:w-1/3 2xl:w-1/4">
             <div className="mx-0 sm:mx-2 pb-4 bg-white">
-                <div className=" p-4 shadow-sm w-full flex justify-between">
+                <div className="px-4 py-2 shadow-sm w-full flex justify-between items-center">
                     <div className="flex items-center">
-                        <h2 className="font-bold mr-2 text-xl">{name}</h2>
+                        <h2 className="font-bold mr-2 text-lg sm:text-base">
+                            {name}
+                        </h2>
                         <span>{formatDate(create_time)}</span>
                     </div>
                     <span
-                        className="cursor-pointer"
+                        className="cursor-pointer flex items-center"
                         onClick={() => refresh(id, onAppRefresh)}
                     >
                         <svg
@@ -70,7 +72,7 @@ function Column(props) {
                         </svg>
                     </span>
                 </div>
-                <div className="h-96 sm:h80 overflow-y-auto pt-2 px-2 sm:px-4">
+                <div className="h-96 sm:h80 overflow-y-auto pt-2 pl-1 sm:pr-3">
                     {hotItem}
                 </div>
             </div>
